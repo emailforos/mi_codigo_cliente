@@ -27,307 +27,312 @@ require_once 'plugins/facturacion_base/model/core/cliente.php';
 class cliente extends FacturaScripts\model\cliente
 {
     public function get_new_codigo() {
-       
-        $texto = '0'; /*Codigo empieza por número*/
-        /// buscamos un hueco
-        if ($_POST['pais']=='ESP' OR $_POST['nuevo_pais']=='ESP')
-        {
-            if (!$_POST['codpostal']){
-                $rest =  substr($_POST['nuevo_codpostal'], 0, 2);
-                
-            }
-            else 
-            {
-                $rest =  substr($_POST['codpostal'], 0, 2);
-            }
+        if (!isset($_POST['pais']))
+        {   
+            return parent::get_new_codigo();
         }
-        else 
-        {
-            if ($_POST['pais']=='AND' OR $_POST['nuevo_pais']=='AND')
+        else {
+            $texto = '0'; /*Codigo empieza por número*/
+            /// buscamos un hueco
+            if ($_POST['pais']=='ESP' OR $_POST['nuevo_pais']=='ESP')
             {
-                $rest = '54';
-            }
-            else
-            {
-                if ($_POST['pais']=='MAR' OR $_POST['nuevo_pais']=='MAR')
-                {
-                    $rest = '55';
+                if (!$_POST['codpostal']){
+                    $rest =  substr($_POST['nuevo_codpostal'], 0, 2);
+
                 }
                 else 
                 {
-                    if ($_POST['pais']=='CHN' OR $_POST['nuevo_pais']=='CHN')
+                    $rest =  substr($_POST['codpostal'], 0, 2);
+                }
+            }
+            else 
+            {
+                if ($_POST['pais']=='AND' OR $_POST['nuevo_pais']=='AND')
+                {
+                    $rest = '54';
+                }
+                else
+                {
+                    if ($_POST['pais']=='MAR' OR $_POST['nuevo_pais']=='MAR')
                     {
-                        $rest = '56';
+                        $rest = '55';
                     }
-                    else
+                    else 
                     {
-                        if ($_POST['pais']=='ISR' OR $_POST['nuevo_pais']=='ISR')
+                        if ($_POST['pais']=='CHN' OR $_POST['nuevo_pais']=='CHN')
                         {
-                            $rest = '57';
-                        }   
-                        else 
+                            $rest = '56';
+                        }
+                        else
                         {
-                            if ($_POST['pais']=='BRA' OR $_POST['nuevo_pais']=='BRA')        
+                            if ($_POST['pais']=='ISR' OR $_POST['nuevo_pais']=='ISR')
                             {
-                                $rest = '58';
-                            }
-                            else
-                            {
-                                if ($_POST['pais']=='AUT' OR $_POST['nuevo_pais']=='AUT')
-                                {
-                                    $rest = '59';
-                                }
-                            else
-                            {    
-                                if ($_POST['pais']=='DEU' OR $_POST['nuevo_pais']=='DEU')
-                                {
-                                    $rest = '60';
-                                }
+                                $rest = '57';
+                            }   
                             else 
                             {
-                                if ($_POST['pais']=='SLV' OR $_POST['nuevo_pais']=='SLV')
+                                if ($_POST['pais']=='BRA' OR $_POST['nuevo_pais']=='BRA')        
                                 {
-                                    $rest = '61';
-                                }   
-                                else 
-                                {    
-                                    if ($_POST['pais']=='IRL' OR $_POST['nuevo_pais']=='IRL')
+                                    $rest = '58';
+                                }
+                                else
+                                {
+                                    if ($_POST['pais']=='AUT' OR $_POST['nuevo_pais']=='AUT')
                                     {
-                                        $rest = '62';
+                                        $rest = '59';
                                     }
-                                    else 
+                                else
+                                {    
+                                    if ($_POST['pais']=='DEU' OR $_POST['nuevo_pais']=='DEU')
                                     {
-                                        if ($_POST['pais']=='AUS' OR $_POST['nuevo_pais']=='AUS')
+                                        $rest = '60';
+                                    }
+                                else 
+                                {
+                                    if ($_POST['pais']=='SLV' OR $_POST['nuevo_pais']=='SLV')
+                                    {
+                                        $rest = '61';
+                                    }   
+                                    else 
+                                    {    
+                                        if ($_POST['pais']=='IRL' OR $_POST['nuevo_pais']=='IRL')
                                         {
-                                            $rest = '63';
+                                            $rest = '62';
                                         }
-                                        else
-                                        {    
-                                            if ($_POST['pais']=='CHL' OR $_POST['nuevo_pais']=='CHL')
-                                            {
-                                                $rest = '64';
-                                            }
                                         else 
-                                        {    
-                                            if ($_POST['pais']=='BEL' OR $_POST['nuevo_pais']=='BEL')
+                                        {
+                                            if ($_POST['pais']=='AUS' OR $_POST['nuevo_pais']=='AUS')
                                             {
-                                                $rest = '65';
+                                                $rest = '63';
                                             }
-                                            else 
-                                            {  
-                                                if ($_POST['pais']=='VEN' OR $_POST['nuevo_pais']=='VEN')
+                                            else
+                                            {    
+                                                if ($_POST['pais']=='CHL' OR $_POST['nuevo_pais']=='CHL')
                                                 {
-                                                    $rest = '66';
+                                                    $rest = '64';
                                                 }
-                                                else
+                                            else 
+                                            {    
+                                                if ($_POST['pais']=='BEL' OR $_POST['nuevo_pais']=='BEL')
                                                 {
-                                                    if ($_POST['pais']=='EGY' OR $_POST['nuevo_pais']=='EGY')
+                                                    $rest = '65';
+                                                }
+                                                else 
+                                                {  
+                                                    if ($_POST['pais']=='VEN' OR $_POST['nuevo_pais']=='VEN')
                                                     {
-                                                        $rest = '67';
+                                                        $rest = '66';
                                                     }
-                                                    else 
+                                                    else
                                                     {
-                                                        if ($_POST['pais']=='ZAF' OR $_POST['nuevo_pais']=='ZAF')
+                                                        if ($_POST['pais']=='EGY' OR $_POST['nuevo_pais']=='EGY')
                                                         {
-                                                            $rest = '68';
+                                                            $rest = '67';
                                                         }
                                                         else 
-                                                        {   
-                                                            if ($_POST['pais']=='ARG' OR $_POST['nuevo_pais']=='ARG')
+                                                        {
+                                                            if ($_POST['pais']=='ZAF' OR $_POST['nuevo_pais']=='ZAF')
                                                             {
-                                                                $rest = '69';
+                                                                $rest = '68';
                                                             }
-                                                            else
-                                                            {    
-                                                                if ($_POST['pais']=='DNK' OR $_POST['nuevo_pais']=='DNK')
+                                                            else 
+                                                            {   
+                                                                if ($_POST['pais']=='ARG' OR $_POST['nuevo_pais']=='ARG')
                                                                 {
-                                                                    $rest = '70';
+                                                                    $rest = '69';
                                                                 }
-                                                                else 
-                                                                {
-                                                                    if ($_POST['pais']=='COL' OR $_POST['nuevo_pais']=='COL')
+                                                                else
+                                                                {    
+                                                                    if ($_POST['pais']=='DNK' OR $_POST['nuevo_pais']=='DNK')
                                                                     {
-                                                                        $rest = '71';
+                                                                        $rest = '70';
                                                                     }
-                                                                    else
-                                                                    {    
-                                                                        if ($_POST['pais']=='SGP' OR $_POST['nuevo_pais']=='SGP')
+                                                                    else 
+                                                                    {
+                                                                        if ($_POST['pais']=='COL' OR $_POST['nuevo_pais']=='COL')
                                                                         {
-                                                                            $rest = '72';
+                                                                            $rest = '71';
                                                                         }
-                                                                        else 
+                                                                        else
                                                                         {    
-                                                                            if ($_POST['pais']=='NOR' OR $_POST['nuevo_pais']=='NOR')
+                                                                            if ($_POST['pais']=='SGP' OR $_POST['nuevo_pais']=='SGP')
                                                                             {
-                                                                                $rest = '73';
+                                                                                $rest = '72';
                                                                             }
                                                                             else 
                                                                             {    
-                                                                                if ($_POST['pais']=='ROU' OR $_POST['nuevo_pais']=='ROU')
+                                                                                if ($_POST['pais']=='NOR' OR $_POST['nuevo_pais']=='NOR')
                                                                                 {
-                                                                                    $rest = '74';
+                                                                                    $rest = '73';
                                                                                 }
-                                                                                else
+                                                                                else 
                                                                                 {    
-                                                                                    if ($_POST['pais']=='USA' OR $_POST['nuevo_pais']=='USA')
+                                                                                    if ($_POST['pais']=='ROU' OR $_POST['nuevo_pais']=='ROU')
                                                                                     {
-                                                                                        $rest = '75';
+                                                                                        $rest = '74';
                                                                                     }
-                                                                                    else 
+                                                                                    else
                                                                                     {    
-                                                                                        if ($_POST['pais']=='LBN' OR $_POST['nuevo_pais']=='LBN')
+                                                                                        if ($_POST['pais']=='USA' OR $_POST['nuevo_pais']=='USA')
                                                                                         {
-                                                                                            $rest = '76';
+                                                                                            $rest = '75';
                                                                                         }
                                                                                         else 
                                                                                         {    
-                                                                                            if ($_POST['pais']=='IDN' OR $_POST['nuevo_pais']=='IDN')
+                                                                                            if ($_POST['pais']=='LBN' OR $_POST['nuevo_pais']=='LBN')
                                                                                             {
-                                                                                                $rest = '77';
+                                                                                                $rest = '76';
                                                                                             }
                                                                                             else 
                                                                                             {    
-                                                                                                if ($_POST['pais']=='LKA' OR $_POST['nuevo_pais']=='LKA')
+                                                                                                if ($_POST['pais']=='IDN' OR $_POST['nuevo_pais']=='IDN')
                                                                                                 {
-                                                                                                    $rest = '78';
-                                                                                                }
-                                                                                            else 
-                                                                                            {    
-                                                                                                if ($_POST['pais']=='SRB' OR $_POST['nuevo_pais']=='SBA')
-                                                                                                {
-                                                                                                    $rest = '79';
+                                                                                                    $rest = '77';
                                                                                                 }
                                                                                                 else 
                                                                                                 {    
-                                                                                                    if ($_POST['pais']=='FRA' OR $_POST['nuevo_pais']=='FRA')
+                                                                                                    if ($_POST['pais']=='LKA' OR $_POST['nuevo_pais']=='LKA')
                                                                                                     {
-                                                                                                        $rest = '80';
+                                                                                                        $rest = '78';
+                                                                                                    }
+                                                                                                else 
+                                                                                                {    
+                                                                                                    if ($_POST['pais']=='SRB' OR $_POST['nuevo_pais']=='SBA')
+                                                                                                    {
+                                                                                                        $rest = '79';
                                                                                                     }
                                                                                                     else 
                                                                                                     {    
-                                                                                                        if ($_POST['pais']=='FIN' OR $_POST['nuevo_pais']=='FIN')
+                                                                                                        if ($_POST['pais']=='FRA' OR $_POST['nuevo_pais']=='FRA')
                                                                                                         {
-                                                                                                            $rest = '81';
+                                                                                                            $rest = '80';
                                                                                                         }
                                                                                                         else 
                                                                                                         {    
-                                                                                                            if ($_POST['pais']=='TTO' OR $_POST['nuevo_pais']=='TTO')
+                                                                                                            if ($_POST['pais']=='FIN' OR $_POST['nuevo_pais']=='FIN')
                                                                                                             {
-                                                                                                                $rest = '82';
+                                                                                                                $rest = '81';
                                                                                                             }
                                                                                                             else 
                                                                                                             {    
-                                                                                                                if ($_POST['pais']=='GRC' OR $_POST['nuevo_pais']=='GRC')
+                                                                                                                if ($_POST['pais']=='TTO' OR $_POST['nuevo_pais']=='TTO')
                                                                                                                 {
-                                                                                                                    $rest = '83';
+                                                                                                                    $rest = '82';
                                                                                                                 }
                                                                                                                 else 
                                                                                                                 {    
-                                                                                                                    if ($_POST['pais']=='IND' OR $_POST['nuevo_pais']=='IND')
+                                                                                                                    if ($_POST['pais']=='GRC' OR $_POST['nuevo_pais']=='GRC')
                                                                                                                     {
-                                                                                                                        $rest = '84';
+                                                                                                                        $rest = '83';
                                                                                                                     }
                                                                                                                     else 
                                                                                                                     {    
-                                                                                                                        if ($_POST['pais']=='GBR' OR $_POST['nuevo_pais']=='GBR')
+                                                                                                                        if ($_POST['pais']=='IND' OR $_POST['nuevo_pais']=='IND')
                                                                                                                         {
-                                                                                                                            $rest = '85';
+                                                                                                                            $rest = '84';
                                                                                                                         }
                                                                                                                         else 
                                                                                                                         {    
-                                                                                                                            if ($_POST['pais']=='IRN' OR $_POST['nuevo_pais']=='IRN')
+                                                                                                                            if ($_POST['pais']=='GBR' OR $_POST['nuevo_pais']=='GBR')
                                                                                                                             {
-                                                                                                                                $rest = '86';
+                                                                                                                                $rest = '85';
                                                                                                                             }
                                                                                                                             else 
                                                                                                                             {    
-                                                                                                                                if ($_POST['pais']=='LTU' OR $_POST['nuevo_pais']=='LTU')
+                                                                                                                                if ($_POST['pais']=='IRN' OR $_POST['nuevo_pais']=='IRN')
                                                                                                                                 {
-                                                                                                                                    $rest = '87';
+                                                                                                                                    $rest = '86';
                                                                                                                                 }
                                                                                                                                 else 
                                                                                                                                 {    
-                                                                                                                                    if ($_POST['pais']=='TWN' OR $_POST['nuevo_pais']=='TWN')
+                                                                                                                                    if ($_POST['pais']=='LTU' OR $_POST['nuevo_pais']=='LTU')
                                                                                                                                     {
-                                                                                                                                        $rest = '88';
+                                                                                                                                        $rest = '87';
                                                                                                                                     }
                                                                                                                                     else 
                                                                                                                                     {    
-                                                                                                                                        if ($_POST['pais']=='EST' OR $_POST['nuevo_pais']=='EST')
+                                                                                                                                        if ($_POST['pais']=='TWN' OR $_POST['nuevo_pais']=='TWN')
                                                                                                                                         {
-                                                                                                                                            $rest = '89';
+                                                                                                                                            $rest = '88';
                                                                                                                                         }
                                                                                                                                         else 
                                                                                                                                         {    
-                                                                                                                                            if ($_POST['pais']=='NLD' OR $_POST['nuevo_pais']=='NLD')
+                                                                                                                                            if ($_POST['pais']=='EST' OR $_POST['nuevo_pais']=='EST')
                                                                                                                                             {
-                                                                                                                                                $rest = '90';
+                                                                                                                                                $rest = '89';
                                                                                                                                             }
                                                                                                                                             else 
-                                                                                                                                            {
-                                                                                                                                                if ($_POST['pais']=='HUN' OR $_POST['nuevo_pais']=='HUN')
+                                                                                                                                            {    
+                                                                                                                                                if ($_POST['pais']=='NLD' OR $_POST['nuevo_pais']=='NLD')
                                                                                                                                                 {
-                                                                                                                                                    $rest = '91';
+                                                                                                                                                    $rest = '90';
                                                                                                                                                 }
                                                                                                                                                 else 
                                                                                                                                                 {
-                                                                                                                                                    if ($_POST['pais']=='ITA' OR $_POST['nuevo_pais']=='ITA')
+                                                                                                                                                    if ($_POST['pais']=='HUN' OR $_POST['nuevo_pais']=='HUN')
                                                                                                                                                     {
-                                                                                                                                                        $rest = '92';
+                                                                                                                                                        $rest = '91';
                                                                                                                                                     }
                                                                                                                                                     else 
-                                                                                                                                                    {    
-                                                                                                                                                        if ($_POST['pais']=='POL' OR $_POST['nuevo_pais']=='POL')
+                                                                                                                                                    {
+                                                                                                                                                        if ($_POST['pais']=='ITA' OR $_POST['nuevo_pais']=='ITA')
                                                                                                                                                         {
-                                                                                                                                                            $rest = '93';
+                                                                                                                                                            $rest = '92';
                                                                                                                                                         }
                                                                                                                                                         else 
                                                                                                                                                         {    
-                                                                                                                                                            if ($_POST['pais']=='MEX' OR $_POST['nuevo_pais']=='MEX')
+                                                                                                                                                            if ($_POST['pais']=='POL' OR $_POST['nuevo_pais']=='POL')
                                                                                                                                                             {
-                                                                                                                                                                $rest = '94';
+                                                                                                                                                                $rest = '93';
                                                                                                                                                             }
                                                                                                                                                             else 
                                                                                                                                                             {    
-                                                                                                                                                                if ($_POST['pais']=='PRT' OR $_POST['nuevo_pais']=='PRT')
+                                                                                                                                                                if ($_POST['pais']=='MEX' OR $_POST['nuevo_pais']=='MEX')
                                                                                                                                                                 {
-                                                                                                                                                                    $rest = '95';
+                                                                                                                                                                    $rest = '94';
                                                                                                                                                                 }
                                                                                                                                                                 else 
                                                                                                                                                                 {    
-                                                                                                                                                                    if ($_POST['pais']=='VGB' OR $_POST['nuevo_pais']=='VGB')
+                                                                                                                                                                    if ($_POST['pais']=='PRT' OR $_POST['nuevo_pais']=='PRT')
                                                                                                                                                                     {
-                                                                                                                                                                        $rest = '96';
+                                                                                                                                                                        $rest = '95';
                                                                                                                                                                     }
                                                                                                                                                                     else 
                                                                                                                                                                     {    
-                                                                                                                                                                        if ($_POST['pais']=='SWE' OR $_POST['nuevo_pais']=='SWE')
+                                                                                                                                                                        if ($_POST['pais']=='VGB' OR $_POST['nuevo_pais']=='VGB')
                                                                                                                                                                         {
-                                                                                                                                                                            $rest = '97';
+                                                                                                                                                                            $rest = '96';
                                                                                                                                                                         }
                                                                                                                                                                         else 
                                                                                                                                                                         {    
-                                                                                                                                                                            if ($_POST['pais']=='CHE' OR $_POST['nuevo_pais']=='CHE')
+                                                                                                                                                                            if ($_POST['pais']=='SWE' OR $_POST['nuevo_pais']=='SWE')
                                                                                                                                                                             {
-                                                                                                                                                                                $rest = '98';
+                                                                                                                                                                                $rest = '97';
                                                                                                                                                                             }
-                                                                                                                                                                            else
-                                                                                                                                                                            {
-                                                                                                                                                                                if ($_POST['pais']=='MYS' OR $_POST['nuevo_pais']=='MYS')
+                                                                                                                                                                            else 
+                                                                                                                                                                            {    
+                                                                                                                                                                                if ($_POST['pais']=='CHE' OR $_POST['nuevo_pais']=='CHE')
                                                                                                                                                                                 {
-                                                                                                                                                                                    $rest = "MY";
-                                                                                                                                                                                    $texto = '1';
+                                                                                                                                                                                    $rest = '98';
                                                                                                                                                                                 }
                                                                                                                                                                                 else
                                                                                                                                                                                 {
-                                                                                                                                                                                    if ($_POST['pais']=='ETH' OR $_POST['nuevo_pais']=='ETH')
+                                                                                                                                                                                    if ($_POST['pais']=='MYS' OR $_POST['nuevo_pais']=='MYS')
                                                                                                                                                                                     {
-                                                                                                                                                                                        $rest = 'ET';
+                                                                                                                                                                                        $rest = "MY";
                                                                                                                                                                                         $texto = '1';
                                                                                                                                                                                     }
                                                                                                                                                                                     else
                                                                                                                                                                                     {
-                                                                                                                                                                                        $rest = '00';
+                                                                                                                                                                                        if ($_POST['pais']=='ETH' OR $_POST['nuevo_pais']=='ETH')
+                                                                                                                                                                                        {
+                                                                                                                                                                                            $rest = 'ET';
+                                                                                                                                                                                            $texto = '1';
+                                                                                                                                                                                        }
+                                                                                                                                                                                        else
+                                                                                                                                                                                        {
+                                                                                                                                                                                            $rest = '00';
+                                                                                                                                                                                        }
                                                                                                                                                                                     }
                                                                                                                                                                                 }
                                                                                                                                                                             }
@@ -343,14 +348,14 @@ class cliente extends FacturaScripts\model\cliente
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
-                                                                                                                        }
-                                                                                                                    }  
+                                                                                                                        }  
+                                                                                                                    }
                                                                                                                 }
-                                                                                                            }
-                                                                                                        }   
+                                                                                                            }   
+                                                                                                        }
                                                                                                     }
                                                                                                 }
-                                                                                            }
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     }
@@ -364,85 +369,73 @@ class cliente extends FacturaScripts\model\cliente
                                                     }
                                                 }
                                             }
-                                        }
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            }
+                                }
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        if ($texto == '1'){   
-            $num = 0;
-            $numo = 0;
-            $max = 9999;
-            $encontrado = FALSE;  
-        }              
-        else {
-            $encontrado = FALSE;            
-            $num = intval($rest)*10000;
-            $numo = intval($rest)*10000;
-            $max = ((intval($rest)+1)*10000)-1;
-        }
-        $codclientes = $this->db->select("SELECT ".$this->db->sql_to_int('codcliente')." AS cod FROM ".$this->table_name." WHERE codcliente REGEXP '^$rest' ORDER BY cod ASC;");
-        if ($texto == '1'){
-            if($codclientes)
-            {
-                foreach($codclientes as $n)
+            if ($texto == '1'){   
+                $num = 0;
+                $numo = 0;
+                $max = 9999;
+                $encontrado = FALSE;  
+            }              
+            else {
+                $encontrado = FALSE;            
+                $num = intval($rest)*10000;
+                $numo = intval($rest)*10000;
+                $max = ((intval($rest)+1)*10000)-1;
+            }
+            $codclientes = $this->db->select("SELECT codcliente AS cod FROM ".$this->table_name." WHERE codcliente LIKE '$rest%' ORDER BY cod ASC;");
+            if ($texto == '1'){
+                if($codclientes)
                 {
-                    if( intval(substr($n['cod'],-3)) > $num)
+                    foreach($codclientes as $n)
                     {
-                        $encontrado = TRUE;
-                        break;
+                        if( intval(substr($n['cod'],-4)) > $num)
+                        {
+                            $encontrado = TRUE;
+                            break;
+                        }
+                        else
+                            $num++;
                     }
-                    else
-                        $num++;
                 }
-            }
-            else 
-            {
-                return sprintf('%06s',  "6666");
-            }
-        } else {
-            if($codclientes)
-            {
-                foreach($codclientes as $n)
+                else 
+                {                    
+                        $formato = '%s%04s';
+                        $numero = intval($num);
+                        return sprintf($formato,$rest,$numero);
+                }
+            } else {
+                if($codclientes)
                 {
-                    if( intval($n['cod']) > $num)
+                    foreach($codclientes as $n)
                     {
-                        $encontrado = TRUE;
-                        break;
+                        if( intval($n['cod']) > $num)
+                        {
+                            $encontrado = TRUE;
+                            break;
+                        }
+                        else
+                            $num++;
                     }
-                    else
-                        $num++;
+                }
+                else 
+                {
+                    return sprintf('%06s',  intval($num));
                 }
             }
-            else 
-            {
-                return sprintf('%06s',  intval($num));
-            }
-        }
-            if($encontrado)
-            {
-                if ($texto == '0'){
-                    return sprintf('%06s', intval($num));
-                }
-                else {
-                    $formato = '%s%04s';
-                    $numero = '169';//intval($num);
-                    return sprintf($formato,$rest,$numero);
-                }
-            }
-            else
-            {
-                if ($num<$max)
-                {    
+                if($encontrado)
+                {
                     if ($texto == '0'){
-                    return sprintf('%06s', intval($num));
+                        return sprintf('%06s', intval($num));
                     }
                     else {
                         $formato = '%s%04s';
@@ -450,10 +443,24 @@ class cliente extends FacturaScripts\model\cliente
                         return sprintf($formato,$rest,$numero);
                     }
                 }
-                else 
+                else
                 {
-                    return sprintf('%06s','NO_HAY');
+                    if ($num<$max)
+                    {    
+                        if ($texto == '0'){
+                        return sprintf('%06s', intval($num));
+                        }
+                        else {
+                            $formato = '%s%04s';
+                            $numero = intval($num);
+                            return sprintf($formato,$rest,$numero);
+                        }
+                    }
+                    else 
+                    {
+                        return sprintf('%06s','NO_HAY');
+                    }
                 }
-            }
+        }
     }
 }
