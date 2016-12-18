@@ -27,7 +27,7 @@ require_once 'plugins/facturacion_base/model/core/cliente.php';
 class cliente extends FacturaScripts\model\cliente
 {
     public function get_new_codigo() {
-        if (!isset($_POST['pais']))
+        if ($test=='1000')
         {   
             return parent::get_new_codigo();
         }
@@ -391,6 +391,7 @@ class cliente extends FacturaScripts\model\cliente
                 $num = intval($rest)*10000;
                 $numo = intval($rest)*10000;
                 $max = ((intval($rest)+1)*10000)-1;
+                
             }
             $codclientes = $this->db->select("SELECT codcliente AS cod FROM ".$this->table_name." WHERE codcliente LIKE '$rest%' ORDER BY cod ASC;");
             if ($texto == '1'){
