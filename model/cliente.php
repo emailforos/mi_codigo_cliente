@@ -27,7 +27,7 @@ require_once 'plugins/facturacion_base/model/core/cliente.php';
 class cliente extends FacturaScripts\model\cliente
 {
     public function get_new_codigo() {
-        if ($test=='1000')
+        if ($salvame=='1000')
         {   
             return parent::get_new_codigo();
         }
