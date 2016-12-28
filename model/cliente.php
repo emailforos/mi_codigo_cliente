@@ -324,14 +324,30 @@ class cliente extends FacturaScripts\model\cliente
                                                                                                                                                                                     }
                                                                                                                                                                                     else
                                                                                                                                                                                     {
-                                                                                                                                                                                        if ($_POST['pais']=='ETH' OR $_POST['nuevo_pais']=='ETH')
+                                                                                                                                                                                        if ($_POST['pais']=='ECU' OR $_POST['nuevo_pais']=='ECU')
                                                                                                                                                                                         {
-                                                                                                                                                                                            $rest = 'ET';
+                                                                                                                                                                                            $rest = 'EC';
                                                                                                                                                                                             $texto = '1';
                                                                                                                                                                                         }
                                                                                                                                                                                         else
                                                                                                                                                                                         {
-                                                                                                                                                                                            $rest = '00';
+                                                                                                                                                                                            if ($_POST['pais']=='ETH' OR $_POST['nuevo_pais']=='ETH')
+                                                                                                                                                                                            {
+                                                                                                                                                                                                $rest = 'ET';
+                                                                                                                                                                                                $texto = '1';
+                                                                                                                                                                                            }
+                                                                                                                                                                                            else
+                                                                                                                                                                                            {
+                                                                                                                                                                                                if ($_POST['pais']=='ARE' OR $_POST['nuevo_pais']=='ARE')
+                                                                                                                                                                                                {
+                                                                                                                                                                                                    $rest = 'AE';
+                                                                                                                                                                                                    $texto = '1';
+                                                                                                                                                                                                }
+                                                                                                                                                                                                else
+                                                                                                                                                                                                {
+                                                                                                                                                                                                    $rest = '00';
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
                                                                                                                                                                                         }
                                                                                                                                                                                     }
                                                                                                                                                                                 }
