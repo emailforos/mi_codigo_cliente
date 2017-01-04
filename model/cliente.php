@@ -345,7 +345,15 @@ class cliente extends FacturaScripts\model\cliente
                                                                                                                                                                                                 }
                                                                                                                                                                                                 else
                                                                                                                                                                                                 {
-                                                                                                                                                                                                    $rest = '00';
+                                                                                                                                                                                                    if ($_POST['pais']=='PHL' OR $_POST['nuevo_pais']=='PHL')
+                                                                                                                                                                                                    {
+                                                                                                                                                                                                        $rest = 'AE';
+                                                                                                                                                                                                        $texto = '1';
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    else
+                                                                                                                                                                                                    {
+                                                                                                                                                                                                        $rest = '00';
+                                                                                                                                                                                                    }
                                                                                                                                                                                                 }
                                                                                                                                                                                             }
                                                                                                                                                                                         }
