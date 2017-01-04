@@ -347,7 +347,7 @@ class cliente extends FacturaScripts\model\cliente
                                                                                                                                                                                                 {
                                                                                                                                                                                                     if ($_POST['pais']=='PHL' OR $_POST['nuevo_pais']=='PHL')
                                                                                                                                                                                                     {
-                                                                                                                                                                                                        $rest = 'AE';
+                                                                                                                                                                                                        $rest = 'PH';
                                                                                                                                                                                                         $texto = '1';
                                                                                                                                                                                                     }
                                                                                                                                                                                                     else
