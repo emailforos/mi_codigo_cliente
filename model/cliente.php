@@ -443,7 +443,15 @@ class cliente extends FacturaScripts\model\cliente
 																															}
 																															else
 																															{
+                                                                                                                                                                                                                                                            if ($_POST['pais']=='MLT' OR $_POST['nuevo_pais']=='MT')
+																															    {
+                                                                                                                                                                                                                                                            $rest = 'MT';
+                                                                                                                                                                                                                                                            $texto = '1';
+																															    }
+																															    else
+																															    {
                                                                                                                                                                                                                                                             $rest = '00';
+																															    }
 																															}
                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                 }
