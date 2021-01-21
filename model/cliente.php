@@ -18,6 +18,8 @@
  */
 
 require_once 'plugins/facturacion_base/model/core/cliente.php';
+require_model('pais.php');
+
 
 /**
  * El cliente. Puede tener una o varias direcciones y subcuentas asociadas.
@@ -33,6 +35,14 @@ class cliente extends FacturaScripts\model\cliente
         }
         else {
             $texto = '0'; /*Codigo empieza por número*/
+            // buscamos codigo iso
+            if ($_POST['pais']){
+                $pais = new pais();
+                $epais = $pais->get($_POST['pais']);
+                if ($epais) {
+                    $iso = $epais->codiso;
+                }
+            }
             /// buscamos un hueco
             if ($_POST['pais']=='ESP' OR $_POST['nuevo_pais']=='ESP')
             {
@@ -317,159 +327,15 @@ class cliente extends FacturaScripts\model\cliente
                                                                                                                                                                                 }
                                                                                                                                                                                 else
                                                                                                                                                                                 {
-                                                                                                                                                                                    if ($_POST['pais']=='MYS' OR $_POST['nuevo_pais']=='MYS')
+                                                                                                                                                                                    if ($_POST['pais'] OR $_POST['nuevo_pais'])
                                                                                                                                                                                     {
-                                                                                                                                                                                        $rest = "MY";
+                                                                                                                                                                                        $rest = $iso;
                                                                                                                                                                                         $texto = '1';
                                                                                                                                                                                     }
                                                                                                                                                                                     else
                                                                                                                                                                                     {
-                                                                                                                                                                                        if ($_POST['pais']=='ECU' OR $_POST['nuevo_pais']=='ECU')
-                                                                                                                                                                                        {
-                                                                                                                                                                                            $rest = 'EC';
-                                                                                                                                                                                            $texto = '1';
-                                                                                                                                                                                        }
-                                                                                                                                                                                        else
-                                                                                                                                                                                        {
-                                                                                                                                                                                            if ($_POST['pais']=='ETH' OR $_POST['nuevo_pais']=='ETH')
-                                                                                                                                                                                            {
-                                                                                                                                                                                                $rest = 'ET';
-                                                                                                                                                                                                $texto = '1';
-                                                                                                                                                                                            }
-                                                                                                                                                                                            else
-                                                                                                                                                                                            {
-                                                                                                                                                                                                if ($_POST['pais']=='ARE' OR $_POST['nuevo_pais']=='ARE')
-                                                                                                                                                                                                {
-                                                                                                                                                                                                    $rest = 'AE';
-                                                                                                                                                                                                    $texto = '1';
-                                                                                                                                                                                                }
-                                                                                                                                                                                                else
-                                                                                                                                                                                                {
-                                                                                                                                                                                                    if ($_POST['pais']=='PHL' OR $_POST['nuevo_pais']=='PHL')
-                                                                                                                                                                                                    {
-                                                                                                                                                                                                        $rest = 'PH';
-                                                                                                                                                                                                        $texto = '1';
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                    else
-                                                                                                                                                                                                    {
-                                                                                                                                                                                                        if ($_POST['pais']=='DZA' OR $_POST['nuevo_pais']=='DZ')
-                                                                                                                                                                                                        {
-                                                                                                                                                                                                            $rest = 'DZ';
-                                                                                                                                                                                                            $texto = '1';
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                        else
-                                                                                                                                                                                                        {
-                                                                                                                                                                                                            if ($_POST['pais']=='RUS' OR $_POST['nuevo_pais']=='RU')
-                                                                                                                                                                                                            {
-                                                                                                                                                                                                                $rest = 'RU';
-                                                                                                                                                                                                                $texto = '1';
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                            else
-                                                                                                                                                                                                            {
-                                                                                                                                                                                                                if ($_POST['pais']=='BOL' OR $_POST['nuevo_pais']=='BO')
-                                                                                                                                                                                                                {
-                                                                                                                                                                                                                    $rest = 'BO';
-                                                                                                                                                                                                                    $texto = '1';
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                                else
-                                                                                                                                                                                                                {
-                                                                                                                                                                                                                    if ($_POST['pais']=='CAN' OR $_POST['nuevo_pais']=='CA')
-                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                        $rest = 'CA';
-                                                                                                                                                                                                                        $texto = '1';
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                    else
-                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                        if ($_POST['pais']=='CRI' OR $_POST['nuevo_pais']=='CR')
-                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                            $rest = 'CR';
-                                                                                                                                                                                                                            $texto = '1';
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                        else
-                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                            if ($_POST['pais']=='UKR' OR $_POST['nuevo_pais']=='UA')
-                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                $rest = 'UA';
-                                                                                                                                                                                                                                $texto = '1';
-                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                            else
-                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                if ($_POST['pais']=='PER' OR $_POST['nuevo_pais']=='PE')
-                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                    $rest = 'PE';
-                                                                                                                                                                                                                                    $texto = '1';
-                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                else
-                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                    if ($_POST['pais']=='PAN' OR $_POST['nuevo_pais']=='PA')
-                                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                                        $rest = 'PA';
-                                                                                                                                                                                                                                        $texto = '1';
-                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                    else
-                                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                                        if ($_POST['pais']=='KEN' OR $_POST['nuevo_pais']=='KE')
-                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                            $rest = 'KE';
-                                                                                                                                                                                                                                            $texto = '1';
-                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                        else
-                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                            if ($_POST['pais']=='SVK' OR $_POST['nuevo_pais']=='SK')
-                                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                                $rest = 'SK';
-                                                                                                                                                                                                                                                $texto = '1';
-                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                            else
-                                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                                if ($_POST['pais']=='NAM' OR $_POST['nuevo_pais']=='NA')
-                                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                                    $rest = 'NA';
-                                                                                                                                                                                                                                                    $texto = '1';
-                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                else
-                                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                                    if ($_POST['pais']=='TUR' OR $_POST['nuevo_pais']=='TR')
-                                                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                                                        $rest = 'TR';
-                                                                                                                                                                                                                                                        $texto = '1';
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                    else
-                                                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                                                        if ($_POST['pais']=='BGR' OR $_POST['nuevo_pais']=='BG')
-																															{
-                                                                                                                                                                                                                                                            $rest = 'BG';
-                                                                                                                                                                                                                                                            $texto = '1';
-																															}
-																															else
-																															{
-                                                                                                                                                                                                                                                            if ($_POST['pais']=='MLT' OR $_POST['nuevo_pais']=='MT')
-																															    {
-                                                                                                                                                                                                                                                            $rest = 'MT';
-                                                                                                                                                                                                                                                            $texto = '1';
-																															    }
-																															    else
-																															    {
-                                                                                                                                                                                                                                                            $rest = '00';
-																															    }
-																															}
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                            	}
-                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                }
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
+                                                                                                                                                                                        $rest = '00';
+                                                                                                                                                                                    }																															
                                                                                                                                                                                 }
                                                                                                                                                                             }
                                                                                                                                                                         }
